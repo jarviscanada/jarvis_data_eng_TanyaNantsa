@@ -1,8 +1,7 @@
---1. switch to `host_agent`
--- connect to the host_agent database;
+-- Connect to the host_agent database;
 \c host_agent;
 
---2. create `host_info` table if not exist
+-- Create `host_info` table if not exist
 CREATE TABLE IF NOT EXISTS PUBLIC.host_info
     (
         id SERIAL NOT NULL,
@@ -24,7 +23,7 @@ INSERT INTO host_info (id, hostname, cpu_number, cpu_architecture, cpu_model, cp
 
 INSERT INTO host_info (id, hostname, cpu_number, cpu_architecture, cpu_model, cpu_mhz, l2_cache, "timestamp", total_mem) VALUES(3, 'noe2', 1, 'x86_64', 'Intel(R) Xeon(R) CPU @ 2.30GHz', 2300, 256, '2019-05-29 17:49:53.000', 601324);
 
---3. create `host_usage` table if not exist
+-- Create `host_usage` table if not exist
 CREATE TABLE IF NOT EXISTS PUBLIC.host_usage
     (
         "timestamp" TIMESTAMP NOT NULL,
