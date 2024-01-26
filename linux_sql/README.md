@@ -7,6 +7,7 @@ The technologies used include Docker for the containerized deployment of the Pos
 
 # Quick Start
 - Start a psql instance using psql_docker.sh
+
 `./scripts/psql_docker.sh start`
 - Create tables using ddl.sql
     `psql -h localhost -U postgres -d host_agent -f sql/ddl.sql`
@@ -23,7 +24,7 @@ The technologies used include Docker for the containerized deployment of the Pos
 A Postgres instance was set up using Docker to serve as the database. Then, two tables were created to store the resource usage and hardware specification data in the Postgres instance. The hardware specifications and resource usage information are collected using bash scripts that run on every server. The scripts also direct the data into the Postgres instance. Finally, the monitoring project, deployed across all servers, collects data every minute, storing it in the Postgres database. 
 
 ## Architecture
-![Cluster Diagram](../assets/cluster_diagram.drawio.png)
+![Cluster Diagram](./linux_sql/assets/cluster_diagram.drawio.png)
 
 ## Scripts
 ### psql_docker.sh
