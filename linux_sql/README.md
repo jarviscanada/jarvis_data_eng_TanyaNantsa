@@ -6,50 +6,49 @@ The technologies used include Docker for the containerized deployment of the Pos
 
 
 # Quick Start
-- Start a psql instance using psql_docker.sh
-
-`./scripts/psql_docker.sh start`
-- Create tables using ddl.sql
-    `psql -h localhost -U postgres -d host_agent -f sql/ddl.sql`
-- Insert hardware specs data into the DB using host_info.sh
-    `./scripts/host_info.sh psql_host psql_port db_name psql_user psql_password`
-- Insert hardware usage data into the DB using host_usage.sh
-    `bash scripts/host_usage.sh psql_host psql_port db_name psql_user psql_password`
-- Crontab setup
-    `crontab -e`
-- In the crontab editor insert code written below. Ensure you add the correct full file location for the host_usage script:
-    `* * * * * bash /[insert full file path for host_usage script]/host_usage.sh localhost 5432 host_agent postgres password > /tmp/host_usage.log`
+- Start a psql instance using psql_docker.sh  
+    `./scripts/psql_docker.sh start`  
+- Create tables using ddl.sql  
+    `psql -h localhost -U postgres -d host_agent -f sql/ddl.sql`  
+- Insert hardware specs data into the DB using host_info.sh  
+    `./scripts/host_info.sh psql_host psql_port db_name psql_user psql_password`  
+- Insert hardware usage data into the DB using host_usage.sh  
+    `bash scripts/host_usage.sh psql_host psql_port db_name psql_user psql_password`  
+- Crontab setup  
+    `crontab -e`  
+- In the crontab editor insert code written below. Ensure you add the correct full file location for the host_usage script:  
+    `* * * * * bash /[insert full file path for host_usage script]/host_usage.sh localhost 5432 host_agent postgres password > /tmp/host_usage.log`  
 
 # Implementation
 A Postgres instance was set up using Docker to serve as the database. Then, two tables were created to store the resource usage and hardware specification data in the Postgres instance. The hardware specifications and resource usage information are collected using bash scripts that run on every server. The scripts also direct the data into the Postgres instance. Finally, the monitoring project, deployed across all servers, collects data every minute, storing it in the Postgres database. 
 
 ## Architecture
-![Cluster Diagram](./linux_sql/assets/cluster_diagram.drawio.png)
+![Cluster Diagram](./assets/cluster_diagram.drawio.png)
 
 ## Scripts
 ### psql_docker.sh
 The psql_docker.sh script manages a PostgreSQL Docker container, allowing users to create, start, or stop the container based on the specified command-line arguments. The script uses a switch case to handle different commands.
-- Usage:
-    `./scripts/psql_docker.sh start|stop|create [db_username][db_password]`
-    `./scripts/psql_docker.sh create db_username db_password`
-    `./scripts/psql_docker.sh start`
-    `./scripts/psql_docker.sh stop`
+- Usage:  
+    `./scripts/psql_docker.sh start|stop|create [db_username][db_password]`  
+    `./scripts/psql_docker.sh create db_username db_password`  
+    `./scripts/psql_docker.sh start`  
+    `./scripts/psql_docker.sh stop`  
 
 ### host_info.sh
 The host_info.sh script automates collecting hardware information from a Linux machine and inserting it into a PostgreSQL database. Hardware specifications are parsed using Bash commands and assigned to variables. An INSERT statement is built based on the parsed hardware information to add data to the database.
-- Usage:
-    `bash scripts/host_info.sh psql_host psql_port db_name psql_user psql_password`
+- Usage:  
+    `bash scripts/host_info.sh psql_host psql_port db_name psql_user psql_password`  
     
 ### host_usage.sh
 The host_usage.sh script automates collecting resource usage data from a Linux machine and inserting it into a PostgreSQL database. Resource usage data is parsed using Bash commands and assigned to variables. An INSERT statement is built based on the resource usage information to add data to the database.
-- Usage:
-    `bash scripts/host_usage.sh psql_host psql_port db_name psql_user psql_password`
+- Usage:  
+    `bash scripts/host_usage.sh psql_host psql_port db_name psql_user psql_password`  
 
 ### crontab
 The crontab script executes the host_usage.sh script every minute to continuously collect resource usage data.
-- Usage:
-    `crontab -e`
-    `crontab -l`
+- Usage:  
+    `crontab -e`  
+    `crontab -l`  
 
 ## Database Modeling
 `host_info`
