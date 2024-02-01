@@ -1,0 +1,130 @@
+# Preferred name (Characters only)
+name: "Tanya Nantsa"
+# Your GitHub repo root URL
+github_repo_root_url: https://github.com/jarviscanada/jarvis_data_eng_TanyaNantsa
+
+# Introduce yourself (80-120 words)
+# Suggestions: you should
+# 1) describe your academic and work experience (please focus on transferable/job related tech and soft skills only)
+# 2) explain your passion for the role you are looking for (e.g. developer, BSA, QA, tech support, etc.)
+# 3) mention what kind of role you are looking for
+# 4) briefly talk about your qualifications (soft and tech) to justify why the hiring manager should hire your
+summary: I recently graduated with a Bachelor's in Software Engineering from the University of Guelph. As a Data Analyst Intern at Scotiabank, I honed my Python, SQL, and data analysis skills. With a minor in Psychology, I bring a unique perspective to understanding user behaviour. I am passionate about problem-solving, creating a positive impact, and continuously improving my skills in Software Development. Seeking a role as a Software Developer, I bring a strong foundation in C, Python, HTML/CSS, SQL, and JavaScript. Also, my strong communication, time management, and teamwork skills make me a great team addition. My attentive nature, adaptability, and passion for problem-solving make me an ideal candidate for contributing to dynamic and collaborative development teams.
+
+# Group your skills by level.
+# Your skills can be anything software related (e.g. language, frameworks, methodologies, software, etc.).
+# DO NOT mention skills that you don't want to work on in the future (e.g. MS office)
+skills:
+  # At least 5 skills
+  proficient:
+    - Java
+    - Linux/Bash
+    - RDBMS/SQL
+    - Agile/Scrum
+    - Git
+  # At least 5 skills
+  competent:
+    - Python
+    - HTML
+    - CSS
+    - JavaScript
+    - C
+  # At least 5 skills
+  familiar:
+    - React
+    - Bootstrap
+    - Visual Studio Code
+    - IntelliJ IDEA
+    - Ruby
+
+# List of Jarvis projects
+jarvis_projects:
+  - name: "Linux Cluster Resource Monitoring App"
+    git_url: "/linux_sql"
+    # Please read the project description guideline carefully. Make sure you follow the simplified SDLC pattern. (t.ly/NlXQ)
+    # Please include the following keywords: CentOS, Bash/Shell, docker, RDBMS/SQL/Postgresql, crontab, data analytics
+    description: The Linux cluster monitoring project resolves the Jarvis Linux Cluster Administration (LCA) team's need to manage a Linux cluster of 10 servers running CentOS 7. The project collects and stores real-time hardware specifications and resource usage data for each server into a database, enabling the LCA team to generate reports and use data analytics to make informed decisions about server additions or removals. The technologies used include Docker for the containerized deployment of the PostgreSQL database instance, Bash scripts for the data parsing and data collection on individual servers, PostgreSQL for the database, crontab for automating the bash script that collects resource usage data, and Git for version control and feature management within the project.
+  # - name: "Core Java Apps"
+  #   git_url: "/core_java"
+  #   description:
+  #     #Keywords: Java 8, REST API, OAuth, Design patterns (e.g. DAO, MVC), JUnit, Mockito, Docker
+  #     - "Twitter CRUD App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
+  #     # Keywords: Java 8, JDBC, RDBMS, SQL, CRUD,DAO
+  #     - "JDBC App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
+  #     # Keywords: Java 8, Lambda, Stream API, IntelliJ
+  #     - "Grep App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
+  # # Please remove not started projects below so that they don't show up in your profile for now.
+  # # You will need to add a project back to your profile upon completion
+  # - name: "Spring RESTful Microservices App"
+  #   git_url: "/springboot"
+  #   #Keywords: Java8, Spring Boot, REST API, Swagger, Postman, Microservice, Docker, JDBC/JDBCTemplate/DataSource, RDBMS/SQL, Junit, Mockito, etc.
+  #   description: ""
+  # - name: "Python Data Analytics"
+  #   git_url: "/python_data_anlytics"
+  #   description: ""
+  # - name: "Hadoop"
+  #   git_url: "/hadoop"
+  #   description: ""
+  # - name: "Spark"
+  #   git_url: "/spark"
+  #   description: ""
+  # - name: "Cloud/DevOps"
+  #   git_url: "/cloud_devops"
+  #   description: ""
+
+# List of personal or academic projects
+# Feel free to add more projects
+# Please read the project description guideline carefully. Make sure you follow the simplified SDLC pattern. (t.ly/NlXQ)
+highlighted_projects:
+  #project name
+  - name: "Personal Website"
+    #URL is optional
+    git_url: "https://github.com/tanya-nantsa/tanya-nantsa.github.io"
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: A platform where I share coding and sewing projects I work on, my personal interests, and additional contact information.
+  - name: "Chess Game"
+    git_url: https://github.com/tanya-nantsa/ChessGame
+    description: A terminal game where the user selects whether they wish to play the one-player or two-player version of the game.
+  - name: "Image Processing Toolbox"
+    git_url: https://github.com/tanya-nantsa/ImageProcessingToolbox
+    description: An application where users can edit and manipulate images. This toolbox allows users to crop, scale, flip, rotate, apply zero padding, change the brightness, change the contrast, apply filters, and detect edges in their images. The edited image is saved to the user's computer.
+
+#List of professional experience
+# Please read the project description guideline carefully. Make sure you follow the simplified SDLC pattern. (t.ly/NlXQ)
+#The description must be more than 25 words. If your experience is not software related, please focus on soft skills and achievements (e.g. team collaboration, problem-solving, improvements, communication).
+professional_experience:
+  #Write your Jarvis role as a professional experience rather than training.
+  - title: "Software Developer"
+    company: "Jarvis"
+    duration: "2023-present"
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: "At Jarvis Consulting Group I gained hands-on experience with a diverse set of technologies including Linux, SQL, GIT, Java, Springboot, Microservice, REST API, Cloud Computing, DevOps, Data Analytics using SQL and Python, and Big Data tools such as Hadoop, Spark, and Scala. Throughout this role, I collaborate with Tech Leads and Professionals, contributing to the development of projects and writing code in Java, Python, SQL, and more. Additionally, this role has enhanced my time management, problem-solving, and communication skills."
+  - title: "Data Analyst Intern"
+    company: "Scotiabank"
+    duration: "2022"
+    description: "Worked on the Behavioural Data Science team to develop a model for verifying customer home addresses and identifying traveling customers using location data. Analyzed fraud rate of traveling customers to identify significant patterns. Solutions developed from this migration analysis project are to be used by other team members on existing projects within the company."
+
+#List of edcuation
+education:
+  - school_name: "University of Guelph"
+    duration: "2019-2023"
+    degree: "Bachelor of Computing"
+    department: "College of Engineering & Physical Sciences"
+    # optional
+    awards_achievements:
+      - "Dean's List (2020, 2021)"
+
+#Optional section
+others:
+  #   #category
+  # - title: "Certificates"
+  #   #list of items
+  #   bullets:
+  #     - "Udacity Machine Learning (2019)"
+  # - title: "Awards"
+  #   bullets:
+  #     - "Winner"
+  - title: "Activities/Hobbies"
+    bullets:
+      - "Sewing"
+      - "Crochet and Kniting"
