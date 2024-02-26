@@ -5,6 +5,7 @@ import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -65,8 +66,33 @@ public class JavaGrepImp implements JavaGrep {
     @Override
     public List<File> listFiles(String rootDir) {
         List<File> fileList = new ArrayList<>();
-        File dir = new File(rootDir);
-        fileList = Arrays.asList(Objects.requireNonNull(dir.listFiles()));
+        try {
+            File dir = new File(rootDir);
+            if (!dir.exists()) {
+                throw new FileNotFoundException("ERROR: Invalid Input Filepath");
+            }
+            fileList = recursiveListFile(dir, fileList);
+        } catch (FileNotFoundException e){
+            System.out.println(e.getMessage());
+        } catch(NullPointerException e) {
+            throw new NullPointerException("ERROR: Invalid Input Filepath");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return fileList;
+    }
+
+    private List<File> recursiveListFile(File dir, List<File> fileList) throws IOException {
+        File[] files = dir.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    recursiveListFile(file, fileList);
+                } else {
+                    fileList.add(file);
+                }
+            }
+        }
         return fileList;
     }
 
@@ -87,18 +113,19 @@ public class JavaGrepImp implements JavaGrep {
 
     @Override
     public boolean containsPatterns(String line) {
-        return getRegex().contains(line); // or try .matches
+        return line.matches(getRegex()); // or try .matches
     }
 
     @Override
     public void writeToFile(List<String> lines) throws IOException {
-        String filename = "./out/output.txt";
+        String filename = getOutFile();
         try (BufferedWriter bufferedWriter = new BufferedWriter (new FileWriter(filename))) {
             for (String line : lines) {
                 bufferedWriter.write(line);
+                bufferedWriter.newLine();
             }
         } catch (IOException e) {
-            throw new IOException(e);
+            throw new IOException("ERROR: Invalid Output Filepath");
         }
     }
 
@@ -107,13 +134,10 @@ public class JavaGrepImp implements JavaGrep {
             throw new IllegalArgumentException("USAGE: JavaGrep rootPath outFile");
         }
 
-//        //Use default logger config
-//        BasicConfigurator.configure();
-
         JavaGrepImp javaGrepImp = new JavaGrepImp();
         javaGrepImp.setRegex(args[0]);
         javaGrepImp.setRootPath(args[1]);
-        javaGrepImp.setRootPath(args[2]);
+        javaGrepImp.setOutFile(args[2]);
 
         try {
             javaGrepImp.process();
