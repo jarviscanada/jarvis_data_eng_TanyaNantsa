@@ -1,15 +1,11 @@
 package ca.jrvs.apps.grep;
 
-import com.sun.corba.se.impl.orb.ORBConfiguratorImpl;
 import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
 
 import java.io.*;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 public class JavaGrepImp implements JavaGrep {
 
@@ -71,7 +67,7 @@ public class JavaGrepImp implements JavaGrep {
             if (!dir.exists()) {
                 throw new FileNotFoundException("ERROR: Invalid Input Filepath");
             }
-            fileList = recursiveListFile(dir, fileList);
+            recursiveListFile(dir, fileList);
         } catch (FileNotFoundException e){
             System.out.println(e.getMessage());
         } catch(NullPointerException e) {
@@ -82,7 +78,7 @@ public class JavaGrepImp implements JavaGrep {
         return fileList;
     }
 
-    private List<File> recursiveListFile(File dir, List<File> fileList) throws IOException {
+    private void recursiveListFile(File dir, List<File> fileList) throws IOException {
         File[] files = dir.listFiles();
         if (files != null) {
             for (File file : files) {
@@ -93,7 +89,6 @@ public class JavaGrepImp implements JavaGrep {
                 }
             }
         }
-        return fileList;
     }
 
     @Override
