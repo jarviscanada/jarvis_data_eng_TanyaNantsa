@@ -1,15 +1,11 @@
 package ca.jrvs.apps.grep;
 
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JavaGrepImp implements JavaGrep {
 
-    final Logger logger = LoggerFactory.getLogger(JavaGrep.class);
     private String regex;
     private String rootPath;
     private String outFile;
@@ -47,9 +43,7 @@ public class JavaGrepImp implements JavaGrep {
     @Override
     public void process() throws IOException {
         List<String> matchedLines = new ArrayList<>();
-        //List<File> listFilesRecursive = listFiles(getRootPath());
         for (File file : listFiles(getRootPath())) {
-            //List<String> readLines = readLines(file);
             for (String readLine : readLines(file)) {
                 if (containsPatterns(readLine)) {
                     matchedLines.add(readLine);
@@ -108,7 +102,7 @@ public class JavaGrepImp implements JavaGrep {
 
     @Override
     public boolean containsPatterns(String line) {
-        return line.matches(getRegex()); // or try .matches
+        return line.matches(getRegex());
     }
 
     @Override
@@ -137,7 +131,9 @@ public class JavaGrepImp implements JavaGrep {
         try {
             javaGrepImp.process();
         } catch (Exception ex) {
-            javaGrepImp.logger.error("Error: Unable to process", ex);
+            System.err.println("Error: Unable to process");
+            // Print the exception stack trace to the standard error stream
+            ex.printStackTrace(System.err);
         }
     }
 }
