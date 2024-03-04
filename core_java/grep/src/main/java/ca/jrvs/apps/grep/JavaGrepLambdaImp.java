@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class JavaGrepLambdaImp extends JavaGrepImp {
@@ -23,7 +24,7 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
     public List<File> listFiles(String rootDir) {
         try {
             File dir = new File(rootDir);
-            return Arrays.stream(dir.listFiles())
+            return Arrays.stream(Objects.requireNonNull(dir.listFiles()))
                     .filter(file -> file.isFile())
                     .collect(Collectors.toList());
         } catch (NullPointerException e) {
@@ -44,7 +45,9 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
         try {
             javaGrepLambdaImp.process();
         } catch (Exception ex) {
-            javaGrepLambdaImp.logger.error("Error: Unable to process", ex);
+            System.err.println("Error: Unable to process");
+            // Print the exception stack trace to the standard error stream
+            ex.printStackTrace(System.err);
         }
     }
 }
