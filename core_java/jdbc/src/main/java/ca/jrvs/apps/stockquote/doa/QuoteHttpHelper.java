@@ -43,7 +43,7 @@ public class QuoteHttpHelper {
             String responseData = response.body().string();
 
             // Check if response contains valid data
-            if (responseData.contains("\"Global Quote\":{}")) {
+            if (responseData.contains("\"Global Quote\": {}")) {
                 throw new IllegalArgumentException("No data found for symbol: " + symbol);
             }
 
@@ -77,7 +77,7 @@ public class QuoteHttpHelper {
 
     public static void main(String[] args) {
         QuoteHttpHelper qhh =  new QuoteHttpHelper("54706e6343msh96825dc87a0b044p188036jsn4bab408b03a2");
-        Quote quote = qhh.fetchQuoteInfo("MSFT");
+        Quote quote = qhh.fetchQuoteInfo("INVALID");
         System.out.println(quote.getTicker());
         System.out.println(quote.getPrice());
         System.out.println(quote.getTimestamp());
