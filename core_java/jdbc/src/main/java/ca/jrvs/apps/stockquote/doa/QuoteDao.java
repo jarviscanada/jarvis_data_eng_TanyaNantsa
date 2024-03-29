@@ -46,10 +46,9 @@ public class QuoteDao implements CrudDao<Quote, String> {
             String id = entity.getTicker();
             return this.findById(id).get();
         } catch(SQLException e){
-            e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error saving data to position table",e);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e);
+            throw new IllegalArgumentException("Error - invalid input", e);
         }
     }
 
@@ -76,10 +75,9 @@ public class QuoteDao implements CrudDao<Quote, String> {
             // Return an Optional with quote, or empty if quote is null
             return Optional.ofNullable(quote);
         } catch (SQLException e){
-            e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error finding data in quote table by ID",e);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e);
+            throw new IllegalArgumentException("Error - invalid symbol", e);
         }
     }
 
@@ -106,7 +104,7 @@ public class QuoteDao implements CrudDao<Quote, String> {
             }
             return listQuotes;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error finding all data in quote table", e);
         }
     }
 
@@ -115,11 +113,10 @@ public class QuoteDao implements CrudDao<Quote, String> {
         try (PreparedStatement statement = this.c.prepareStatement(DELETE_ONE);) {
             statement.setString(1, s);
             statement.execute();
-        } catch (SQLException e){
-            e.printStackTrace();
-            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error deleting single data from quote table", e);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e);
+            throw new IllegalArgumentException("Error - Invalid symbol", e);
         }
     }
 
@@ -128,7 +125,7 @@ public class QuoteDao implements CrudDao<Quote, String> {
         try (PreparedStatement statement = this.c.prepareStatement(DELETE_ALL);) {
             statement.execute();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error deleting all data from quote table", e);
         }
     }
 

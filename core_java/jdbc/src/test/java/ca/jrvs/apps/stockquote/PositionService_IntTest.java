@@ -29,6 +29,7 @@ public class PositionService_IntTest {
             positionService = new PositionService(positionDao);
             QuoteDao quoteDao = new QuoteDao(connection);
 
+            positionDao.deleteAll();
             quoteDao.deleteAll();
             Date latestTradingDate = new Date(System.currentTimeMillis());
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -48,7 +49,7 @@ public class PositionService_IntTest {
     public void testBuy() {
         String ticker = "AAPL";
         int numberOfShares = 10;
-        double price = 150.0;
+        double price = 150.0*numberOfShares;
 
         Position position = positionService.buy(ticker, numberOfShares, price);
         assertEquals(ticker, position.getTicker());
@@ -63,7 +64,7 @@ public class PositionService_IntTest {
     public void testSell() {
         String ticker = "AAPL";
         int numberOfShares = 10;
-        double price = 150.0;
+        double price = 150.0*numberOfShares;
 
         positionService.buy(ticker, numberOfShares, price);
         positionService.sell(ticker);

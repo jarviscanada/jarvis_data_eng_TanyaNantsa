@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 
 public class QuoteHttpHelper {
 
@@ -50,6 +50,7 @@ public class QuoteHttpHelper {
             // Parse the response and create Quote object
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(responseData);
+
             JsonNode globalQuote = jsonNode.get("Global Quote");
             String ticker = globalQuote.get("01. symbol").asText();
             double open = globalQuote.get("02. open").asDouble();
@@ -60,28 +61,16 @@ public class QuoteHttpHelper {
             String dateString = globalQuote.get("07. latest trading day").asText();
             dateString = dateString.replaceAll("\"", "");
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date latestTradingDate = dateFormat.parse(dateString);
+            Date latestTradingDate = new java.sql.Date(dateFormat.parse(dateString).getTime());
             double previousClose = globalQuote.get("08. previous close").asDouble();
             double change = globalQuote.get("09. change").asDouble();
             String changePercent = globalQuote.get("10. change percent").asText();
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
             quote = new Quote(ticker, open, high, low, price, volume, latestTradingDate, previousClose, change, changePercent, timestamp);
-
-            //System.out.println(quote.getChange());
             return quote;
         } catch (IOException | ParseException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error fetching quote data", e);
         }
     }
-
-    public static void main(String[] args) {
-        QuoteHttpHelper qhh =  new QuoteHttpHelper("54706e6343msh96825dc87a0b044p188036jsn4bab408b03a2");
-        Quote quote = qhh.fetchQuoteInfo("INVALID");
-        System.out.println(quote.getTicker());
-        System.out.println(quote.getPrice());
-        System.out.println(quote.getTimestamp());
-        System.out.println(quote.getChangePercent());
-    }
-
 }

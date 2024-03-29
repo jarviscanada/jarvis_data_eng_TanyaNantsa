@@ -25,7 +25,7 @@ public class PositionService_UnitTest {
     public void testBuy() {
         String ticker = "AAPL";
         int numberOfShares = 10;
-        double price = 150.0;
+        double price = 150.0*numberOfShares;
 
         Position position = new Position(ticker, numberOfShares, price);
         when(positionDaoMock.save(anyObject())).thenReturn(position);

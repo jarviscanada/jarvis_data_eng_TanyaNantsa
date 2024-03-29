@@ -29,10 +29,9 @@ public class PositionDao implements CrudDao<Position, String> {
             statement.setDouble(3, entity.getValuePaid());
             statement.execute();
 
-            //first need to get last id??
             return this.findById(entity.getTicker()).get();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error saving data to position table",e);
         }
     }
 
@@ -48,12 +47,12 @@ public class PositionDao implements CrudDao<Position, String> {
                 position.setNumOfShares(rs.getInt("number_of_shares"));
                 position.setValuePaid(rs.getDouble("value_paid"));
             }
-            // Return an Optional with quote, or empty if quote is null
+            // Return Optional with quote or empty if quote is null
             return Optional.ofNullable(position);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error finding data in position table by ID",e);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e);
+            throw new IllegalArgumentException("Error - invalid symbol", e);
         }
     }
 
@@ -73,7 +72,7 @@ public class PositionDao implements CrudDao<Position, String> {
             }
             return listPositions;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error finding all data in position table", e);
         }
     }
 
@@ -83,10 +82,9 @@ public class PositionDao implements CrudDao<Position, String> {
             statement.setString(1, s);
             statement.execute();
         } catch (SQLException e){
-            e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error deleting single data from position table", e);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e);
+            throw new IllegalArgumentException("Error - Invalid symbol", e);
         }
     }
 
@@ -95,11 +93,7 @@ public class PositionDao implements CrudDao<Position, String> {
         try (PreparedStatement statement = this.c.prepareStatement(DELETE_ALL);) {
             statement.execute();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error deleting all data from position table", e);
         }
     }
-
-    //implement all inherited methods
-    //you are not limited to methods defined in CrudDao
-
 }
