@@ -46,7 +46,7 @@ public class QuoteDao implements CrudDao<Quote, String> {
             String id = entity.getTicker();
             return this.findById(id).get();
         } catch(SQLException e){
-            throw new RuntimeException("Error saving data to position table",e);
+            throw new RuntimeException("Error saving data to quote table",e);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Error - invalid input", e);
         }

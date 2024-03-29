@@ -1,9 +1,9 @@
 package ca.jrvs.apps.stockquote.doa;
 
 import ca.jrvs.apps.jdbc.DatabaseConnectionManager;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -12,13 +12,13 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class QuoteDao_Test {
 
     private static QuoteDao quoteDao;
 
-    @BeforeAll
+    @BeforeClass
     public static void setUp() {
         try {
             DatabaseConnectionManager dcm = new DatabaseConnectionManager("localhost",
@@ -31,7 +31,7 @@ public class QuoteDao_Test {
         }
     }
 
-    @BeforeEach
+    @Before
     public void beforeEach() {
         // Clean up the database before each test
         quoteDao.deleteAll();
@@ -39,6 +39,7 @@ public class QuoteDao_Test {
 
     @Test
     public void testSave() {
+        quoteDao.deleteAll();
         Date latestTradingDate = new Date(System.currentTimeMillis());
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         Quote quote = new Quote("AAPL", 150.00, 155.00, 149.50, 152.00, 100000, latestTradingDate, 149.75, 2.25, "+1.5%", timestamp);
@@ -68,9 +69,6 @@ public class QuoteDao_Test {
         quoteDao.save(quote2);
         List<Quote> quoteList = (List<Quote>) quoteDao.findAll();
         assertEquals(quoteList.size(), 2);
-//        System.out.println(quoteList.get(0));
-//        System.out.println(quote1);
-//        System.out.println(quoteList);
 //        assertTrue(quoteList.contains(quote1)); //doesn't work case is the same object in memory even tho values are the same
 //        assertTrue(quoteList.contains(quote2));
         assertEquals(quote1.getTicker(), quoteList.get(0).getTicker());

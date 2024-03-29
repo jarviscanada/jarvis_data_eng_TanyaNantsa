@@ -2,8 +2,6 @@ package ca.jrvs.apps.stockquote;
 
 import ca.jrvs.apps.stockquote.doa.Quote;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Optional;
 import java.util.Scanner;
@@ -17,31 +15,16 @@ public class StockQuoteController {
     private PositionService positionService;
     private static final Logger flowLogger = LoggerFactory.getLogger("FlowLogger");
     private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
-    private static final String FLOW_LOG_FILE = "flow.log";
-    private static final String ERROR_LOG_FILE = "error.log";
 
     public StockQuoteController(QuoteService quoteService, PositionService positionService) {
         this.quoteService = quoteService;
         this.positionService = positionService;
     }
 
-    private void configureLogger(String logFile) {
-        try {
-            File file = new File(logFile);
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-        } catch (IOException e) {
-            System.err.println("Error configuring logger: " + e.getMessage());
-        }
-    }
-
     /**
      * User interface for our application
      */
     public void initClient() {
-        configureLogger("flow.log");
-        configureLogger("error.log");
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
