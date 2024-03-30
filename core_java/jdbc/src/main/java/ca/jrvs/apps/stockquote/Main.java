@@ -18,7 +18,7 @@ public class Main {
 
     public static void main(String[] args) {
         Map<String, String> properties = new HashMap<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/properties.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("/usr/local/app/stockquote/resources/properties.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] tokens = line.split(":");

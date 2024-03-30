@@ -1,5 +1,5 @@
 db-class:org.postgresql.Driver
-server:localhost
+server:10.142.0.2
 database:stock_quote
 port:5432
 username:postgres
