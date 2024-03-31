@@ -12,14 +12,14 @@ The Java application leverages Maven for various tasks such as building the proj
  Finally, JUnit and Mockito are used for automated testing.
 
 # Quick Start
-First, pull the Docker image from Docker Hub:
-```docker pull tanyanantsa/stockquote:latest```
-Run the Container instance:
-```docker run --rm -it -v `pwd`/log:/log tanyanantsa/stockquote```
+First, pull the Docker image from Docker Hub:  
+```docker pull tanyanantsa/stockquote:latest```  
+Run the Container instance:  
+```docker run --rm -it -v `pwd`/log:/log tanyanantsa/stockquote```  
 
 # Implementation
 ## ER Diagram
-![ER Diagram](./stockquoteERD.png "stockquoteERD.png")
+![ER Diagram](./stockquoteERD.png "stockquoteERD.png")  
 
 ## Design Patterns
 In the Stock Quote Application, two important design patterns are used: DAO and
