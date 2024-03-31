@@ -13,7 +13,8 @@ The Java application leverages Maven for various tasks such as building the proj
 
 # Quick Start
 First, pull the Docker image from Docker Hub:  
-```docker pull tanyanantsa/stockquote:latest```  
+```docker pull tanyanantsa/stockquote:latest```   
+  
 Run the Container instance:  
 ```docker run --rm -it -v `pwd`/log:/log tanyanantsa/stockquote```  
 
@@ -37,7 +38,7 @@ The Repository pattern works hand in hand with DAOs to make database operations 
 # Test
 The database was set up with the name stock_quote, and tables were created according to
  the ER Diagram included above. To test the implemented CRUD class for each table, I
- designed unit tests for both the QuoteDao and PositionDao class named QuoteDao_Test
+ designed unit tests for both the QuoteDao and PositionDao classes named QuoteDao_Test
  and PositionDao_Test. I wrote unit tests, which implemented JUnit, that did not mock
  the JBDC connection. For each test, test data was created and inserted into the test
  database. This data included various stock quotes and positions. After executing specific
@@ -47,11 +48,11 @@ The database was set up with the name stock_quote, and tables were created accor
  
 The integration tests, QuoteService_Int and PositionService_Int, were implemented to test
  the service layer of the application and the end-to-end application flow. Both tests
- sets up a connection to a local PostgreSQL database and verifies that each classes' methods
+ sets up a connection to a local PostgreSQL database and verifies that each class's methods
  return the expected result when given sample data.  
  
 The unit tests, QuoteService_Unit and PositionService_Unit, were designed to evaluate
- the service layer of the application isolated from it's dependencies. These test
+ the service layer of the application isolated from its dependencies. These test
  utilize Mockito to mock the behaviour of the data access layer of the application and
  validate that the methods of each class produce the anticipated outcome when provided
  with sample data.  
