@@ -14,7 +14,7 @@ Partitioning by Year: I partitioned data by year in Hive tables, which allowed f
 Storing as Parquet: I stored Hive tables using the Parquet format, which is column-oriented. This format reduces I/O operations and minimizes storage space while improving query performance significantly. It also supports efficient predicate pushdown, enabling Hive to skip unnecessary data during query execution.
 
 ## Zeppelin Notebook
-Post a screenshot of your Zeppelin Notebook showcasing your HiveQL code. Ensure the notebook is clean and presentable, suitable for showcasing to hiring managers.
+
 
 # Improvements
 - Continuously optimize Hive queries by reviewing execution plans and leveraging techniques such as indexing where applicable.
