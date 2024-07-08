@@ -14,6 +14,8 @@ Partitioning by Year: I partitioned data by year in Hive tables, which allowed f
 Storing as Parquet: I stored Hive tables using the Parquet format, which is column-oriented. This format reduces I/O operations and minimizes storage space while improving query performance significantly. It also supports efficient predicate pushdown, enabling Hive to skip unnecessary data during query execution.
 
 ## Zeppelin Notebook
+![screencapture-ewezfajr6natrnfuj3pyzfvvgm-dot-us-east1-dataproc-googleusercontent-zeppelin-2024-07-08-01_43_47](https://github.com/jarviscanada/jarvis_data_eng_TanyaNantsa/assets/77226151/2fcca4ab-1678-4b72-880d-6668ebfb0fe8)
+![screencapture-ewezfajr6natrnfuj3pyzfvvgm-dot-us-east1-dataproc-googleusercontent-zeppelin-2024-07-08-01_43_47-2](https://github.com/jarviscanada/jarvis_data_eng_TanyaNantsa/assets/77226151/e78a263f-7cde-4275-9313-e31aab686e18)
 
 
 # Improvements
